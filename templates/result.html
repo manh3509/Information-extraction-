@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+                .main-section{
+        margin:0 auto;
+        padding: 20px;
+        margin-top: 100px;
+        background-color: #fff;
+        box-shadow: 0px 0px 20px #c1c1c1;
+        }
+        #custom_card{
+        background-color:rgb(88, 85, 85);
+        color:#fff;
+        padding:10px;
+        }
+        #custom_card2{
+        background-color:#363434;
+        color:#fff;
+        padding:10px;
+        }
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+        }
+
+        th, td {
+          text-align: left;
+          padding: 16px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+    </style>
+  </head>
+  <body>
+
+<!--==================================================================================================================================-->
+  
+  <div class="jumbotron" style="background:#2d2e2e;color:#fff">
+      <div class="container">
+        <h2 class="display-3">Trích xuất thông tin</h2>
+        <p>Information extraction</p>
+        <p><a class="btn btn-success waves-effect btn-lg" href="/" role="button">Quay lại &raquo;</a></p>
+      </div>
+    </div>
+  <br/>
+  <br/>
+  
+  {% filter markdown %}
+  
+  {% endfilter %}
+  <hr/>
+  
+
+
+
+
+
+
+
+<!---+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card">
+          	<h4>Văn bản input</h4>
+          	<p>{{ rawtext }}</p>
+
+		</div>
+    <div>
+        <h1>Bảng trích xuất tên riêng</h1>
+        <table>
+          <tr>
+            <th>Vị trí</th>
+            <th>Tổ chức</th>
+            <th>Thực thể địa lý</th>
+            <th>Người</th>
+            <th>Thực thể địa chính trị</th>
+            <th>Time</th>
+            <th>Phần trăm</th>
+          </tr>
+          <tr>
+            <td>{{pred2_loc}}</td>
+            <td>{{pred2_org}}</td>
+            <td>{{pred2_geo}}</td>
+            <td>{{pred2_per}}</td>
+            <td>{{pred2_gpe}}</td>
+            <td>{{pred2_tim}}</td>
+            <td>{{pred2_percent}}</td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <th>Tạo tác</th>
+            <th>Sự kiện</th>
+            <th>Hiện tượng tự nhiên</th>
+            <th>Date</th>
+            <th>Ngôn ngữ</th>
+            <th>Tiền tệ</th>
+            <th>Nhân tố chủ yếu</th>
+            <th>Sản phẩm</th>
+          </tr>
+          <tr>
+            <td>{{pred2_art}}</td>
+            <td>{{pred2_eve}}</td>
+            <td>{{pred2_nat}}</td>
+            <td>{{pred2_date}}</td>
+            <td>{{pred2_lan}}</td>
+            <td>{{pred2_money}}</td>
+            <td>{{pred2_car}}</td>
+            <td>{{pred2_product}}</td>
+          </tr>
+        </table>
+    </div>
+	</div>
+	<div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card2">
+          	<h4>Văn bản output</h4>
+			<p>{{ result|markdown }}</p>
+            <p>
+                LOC = Vị trí <br>
+                GEO = Thực thể địa lý <br>
+                ORG = Tổ chức <br>
+                PER = Người <br>
+                GPE = Thực thể địa chính trị <br>
+                TIM = Time <br>
+                ART = Tạo tác <br>
+                EVE = Sự kiện <br>
+                NAT = Hiện tượng tự nhiên <br>
+                LANGUAGE = Ngôn ngữ<br>
+                MONEY = Tiền tệ<br>
+                CARDINAL = Số
+            </p>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+
+
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript">
+	$('.file_upload').file_upload();
+</script>
+</body>
+</html>
+
+</body>
+</html>
